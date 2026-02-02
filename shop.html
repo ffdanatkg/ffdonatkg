@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Выбор доната — Free Fire</title>
+<style>
+  .item.selected {
+    background: rgba(0, 123, 255, 0.8); /* синий полупрозрачный */
+    box-shadow: 0 0 25px rgba(255, 68, 0, 0.8);
+}
+
+  
+body {
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start; /* чтобы блок с товарами был сверху */
+  background: url("backgroundphoto2.jpg") no-repeat center/cover;
+  font-family:'Arial', sans-serif;
+  color:white;
+  padding-top:40px;
+}
+
+
+.container{
+  background: rgba(0,0,0,0.85);
+  padding: 25px;
+  border-radius: 20px;
+  width:90%;
+  max-width:400px;
+  box-shadow:0 0 25px rgba(0,0,0,0.8);
+  text-align:center;
+  animation:fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+h2{
+  margin-bottom:20px;
+  color:#00BFFF;
+  text-shadow:0 0 8px #00BFFF;
+}
+
+/* товары */
+.item{
+  background: rgba(0,123,255,0.6);
+  padding:15px;
+  margin:10px 0;
+  border-radius:15px;
+  cursor:pointer;
+  font-size:18px;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.item:hover{
+  background: rgba(0,123,255,0.9);
+  transform: scale(1.05);
+}
+
+/* кнопка далее */
+#nextBtn{
+  margin-top:20px;
+  padding:12px 30px;
+  font-size:18px;
+  font-weight:bold;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  background: rgba(0,123,255,0.6);
+  color:white;
+  transition:0.3s;
+}
+
+#nextBtn:hover{
+  background: rgba(0,123,255,0.9);
+  transform: scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>💎 Выберите донат</h2>
+
+  <div class="item" onclick="selectItem('100 + 10 алмазов — 95 сом')">💎 100 + 10 алмазов — 95 сом</div>
+  <div class="item" onclick="selectItem('310 + 31 алмаз — 307 сом')">💎 310 + 31 алмаз — 307 сом</div>
+  <div class="item" onclick="selectItem('520 + 52 алмаза — 499 сом')">💎 520 + 52 алмаза — 499 сом</div>
+  <div class="item" onclick="selectItem('1060 + 106 алмазов — 1008 сом')">💎 1060 + 106 алмазов — 1008 сом</div>
+  <div class="item" onclick="selectItem('2180 + 218 алмазов — 2002 сом')">💎 2180 + 218 алмазов — 2002 сом</div>
+  <div class="item" onclick="selectItem('5600 + 560 алмазов — 4802 сом')">💎 5600 + 560 алмазов — 4802 сом</div>
+
+  <button id="nextBtn" onclick="goNext()">Далее</button>
+</div>
+
+<script>
+function selectItem(item){
+  // сохраняем выбранный товар
+  localStorage.setItem("selectedItem", item);
+  // выделяем выбранный элемент
+  document.querySelectorAll('.item').forEach(el=>el.style.border='none');
+  event.currentTarget.style.border='2px solid #FFD700';
+}
+
+function goNext(){
+  const selectedItem = localStorage.getItem("selectedItem");
+  if(!selectedItem){
+    alert("Выберите товар!");
+    return;
+  }
+  // переход на страницу оплаты
+  window.location.href="payment.html";
+}
+</script>
+
+</body>
+</html>
